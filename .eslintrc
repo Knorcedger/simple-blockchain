@@ -1,0 +1,16 @@
+{
+  extends: ['eslint:recommended', 'google'],
+  rules: {
+    'arrow-parens': ['error', 'as-needed'],
+    'comma-dangle': ['error', 'never'],
+    'max-len': ['error', 120],
+    'no-console': 'off'
+  },
+  parserOptions: {
+    ecmaVersion: 9,
+    sourceType: 'module'
+  },
+  env: {
+    node: true
+  }
+}
