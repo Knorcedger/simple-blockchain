@@ -5,7 +5,7 @@ const addWebSocket = webSocket => {
 };
 
 const removeWebSocket = remoteAddress => {
-  // delete webSockets[remoteAddress];
+  delete webSockets[remoteAddress];
 };
 
 const getAllWebSockets = () => {

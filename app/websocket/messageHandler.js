@@ -54,9 +54,7 @@ const getLatestBlockHandler = ws => {
 };
 
 const latestBlockHandler = remoteLatestBlock => {
-  console.log('remote', remoteLatestBlock, typeof remoteLatestBlock);
   const localLatestBlock = getLatestBlock();
-  console.log('hello', remoteLatestBlock.index, localLatestBlock.index);
   if (remoteLatestBlock.index === localLatestBlock.index) {
     console.log('blockchain already in sync');
   } else if (remoteLatestBlock.index < localLatestBlock.index) {
