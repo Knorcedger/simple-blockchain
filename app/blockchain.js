@@ -1,18 +1,19 @@
 import Block from './block';
 import isValidNewBlock from './isValidNewBlock';
 import calculateHash from './calculateHash';
+import isValidChain from './isValidChain';
+
+let blockchain = [];
 
 const getGenesisBlock = () => {
   const index = 0;
   const previousHash = '0';
-  const timestamp = Math.floor(new Date().getTime() / 1000);
+  const timestamp = 1522859419;
   const data = 'Genesis Block!';
   const hash = calculateHash(index, previousHash, timestamp, data);
 
   return new Block(index, previousHash, timestamp, data, hash);
 };
-
-const blockchain = [];
 
 const initBlockchain = () => {
   blockchain.push(getGenesisBlock());
@@ -31,7 +32,17 @@ const addBlock = newBlock => {
     blockchain.push(newBlock);
   }
 
-  console.log(blockchain);
+  console.log('new block added');
+};
+
+const replaceChain = newBlocks => {
+  if (isValidChain(newBlocks) && newBlocks.length > getAllBlocks().length) {
+    console.log('Received blockchain is valid. Replacing current blockchain with received blockchain');
+    blockchain = newBlocks;
+    // broadcast(responseLatestMsg());
+  } else {
+    console.log('Received blockchain is invalid');
+  }
 };
 
 export {
@@ -39,5 +50,6 @@ export {
   initBlockchain,
   getAllBlocks,
   getGenesisBlock,
-  getLatestBlock
+  getLatestBlock,
+  replaceChain
 };

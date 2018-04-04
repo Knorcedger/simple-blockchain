@@ -3,6 +3,9 @@ import isValidNewBlock from './isValidNewBlock';
 
 const isValidChain = blockchain => {
   if (JSON.stringify(blockchain[0]) !== JSON.stringify(getGenesisBlock())) {
+    console.log('invalid genesis');
+    console.log(JSON.stringify(blockchain[0]));
+    console.log(JSON.stringify(getGenesisBlock()));
     return false;
   }
 
