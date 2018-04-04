@@ -7,12 +7,13 @@ const port = 2000;
 
 const app = express();
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
 initBlockchain();
 
 app.get('/blocks', (req, res) => res.send(JSON.stringify(getAllBlocks())));
 app.post('/mineBlock', (req, res) => {
-  const newBlock = generateNextBlock(req.body.data);
+  const newBlock = generateNextBlock(req.body);
   addBlock(newBlock);
   // broadcast(responseLatestMsg());
   // console.log('block added: ' + JSON.stringify(newBlock));

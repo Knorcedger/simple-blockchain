@@ -1,8 +1,15 @@
 import Block from './block';
 import isValidNewBlock from './isValidNewBlock';
+import calculateHash from './calculateHash';
 
 const getGenesisBlock = () => {
-  return new Block(0, '0', 1465154705, 'my genesis block!!', '12345');
+  const index = 0;
+  const previousHash = '0';
+  const timestamp = Math.floor(new Date().getTime() / 1000);
+  const data = 'Genesis Block!';
+  const hash = calculateHash(index, previousHash, timestamp, data);
+
+  return new Block(index, previousHash, timestamp, data, hash);
 };
 
 const blockchain = [];
