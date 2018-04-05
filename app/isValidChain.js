@@ -1,8 +1,7 @@
-import {getGenesisBlock} from './blockchain';
 import isValidNewBlock from './isValidNewBlock';
 
-const isValidChain = blockchain => {
-  if (JSON.stringify(blockchain[0]) !== JSON.stringify(getGenesisBlock())) {
+const isValidChain = (blockchain, genesisBlock) => {
+  if (JSON.stringify(blockchain[0]) !== JSON.stringify(genesisBlock)) {
     console.log('invalid genesis');
     return false;
   }
