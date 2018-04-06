@@ -10,6 +10,7 @@
     "ws": "^5.1.1"
   },
   "devDependencies": {
+    "delay": "^2.0.0",
     "eslint": "^4.19.1",
     "eslint-config-google": "^0.9.1",
     "jest": "^22.4.3",

@@ -22,7 +22,7 @@ app.post('/mineBlock', (req, res) => {
     data: newBlock
   });
   // console.log('block added: ' + JSON.stringify(newBlock));
-  res.send();
+  res.sendStatus(200);
 });
 app.get('/peers', (req, res) => {
   res.send(Object.values(getAllWebSockets()).map(s => s._socket.remoteAddress + ':' + s._socket.remotePort));
