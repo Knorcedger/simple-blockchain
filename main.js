@@ -21,7 +21,7 @@ app.post('/mineBlock', (req, res) => {
     type: 'newBlock',
     data: newBlock
   });
-  // console.log('block added: ' + JSON.stringify(newBlock));
+
   res.sendStatus(200);
 });
 app.get('/peers', (req, res) => {

@@ -12,9 +12,9 @@ describe('api calls', () => {
 
   beforeEach(async done => {
     process.env.port = 2000;
-    server = spawn('npm', ['start'], {env: process.env, detached: false});
+    server = spawn('npm', ['run', 'start:simple'], {stdio: 'inherit', env: process.env, detached: false});
     process.env.port = 2001;
-    server2 = spawn('npm', ['start'], {env: process.env, detached: false});
+    server2 = spawn('npm', ['run', 'start:simple'], {stdio: 'inherit', env: process.env, detached: false});
     await delay(2000);
     done();
   });
