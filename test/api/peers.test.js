@@ -48,7 +48,7 @@ describe('api calls', () => {
     const responsePeers2 = await fetch('http://localhost:2001/peers');
     const peers2 = await responsePeers2.json();
     expect(peers2.length).toBe(1);
-    expect(peers2[0].substr(0, 17)).toBe('::ffff:127.0.0.1:');
+    expect(peers2[0].startsWith('::ffff:127.0.0.1:')).toBeTruthy();
 
     const responseBlocks = await fetch('http://localhost:2001/blocks');
     const chain = await responseBlocks.json();
