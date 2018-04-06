@@ -1,7 +1,7 @@
 {
   "name": "simple-blockchain",
   "version": "1.0.0",
-  "description": "",
+  "description": "Simple Blockchain in JavaScript",
   "main": "index.js",
   "dependencies": {
     "body-parser": "^1.18.2",
