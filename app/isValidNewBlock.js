@@ -1,15 +1,17 @@
-/* eslint-disable no-console */
+import winston from 'winston';
 import calculateHash from './calculateHash';
 
 const isValidNewBlock = (newBlock, previousBlock) => {
+  const n = newBlock;
+
   if (previousBlock.index + 1 !== newBlock.index) {
-    console.log('invalid index');
+    winston.error('invalid index');
     return false;
   } else if (previousBlock.hash !== newBlock.previousHash) {
-    console.log('invalid previousHash');
+    winston.error('invalid previousHash');
     return false;
-  } else if (calculateHash(newBlock.index, newBlock.previousHash, newBlock.timestamp, newBlock.data) !== newBlock.hash) {
-    console.log('invalid hash:', calculateHash(newBlock.index, newBlock.previousHash, newBlock.timestamp, newBlock.data), newBlock.hash);
+  } else if (calculateHash(n.index, n.previousHash, n.timestamp, n.data) !== n.hash) {
+    winston.error('invalid hash:', calculateHash(n.index, n.previousHash, n.timestamp, n.data), n.hash);
     return false;
   }
 

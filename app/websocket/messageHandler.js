@@ -1,10 +1,11 @@
+import winston from 'winston';
 import {addBlock, getAllBlocks, getLatestBlock, replaceChain} from '../blockchain';
 import {getAllWebSockets} from './storage';
 // import {broadcast} from './server';
 
 const messageHandler = ws => {
   ws.on('message', data => {
-    console.log('ws:', data);
+    winston.debug('ws:', data);
     const message = JSON.parse(data);
     if (message.type === 'newBlock') {
       newBlockHandler(message.data);
@@ -56,7 +57,7 @@ const getLatestBlockHandler = ws => {
 const latestBlockHandler = remoteLatestBlock => {
   const localLatestBlock = getLatestBlock();
   if (remoteLatestBlock.index === localLatestBlock.index) {
-    console.log('blockchain already in sync');
+    winston.debug('blockchain already in sync');
   } else if (remoteLatestBlock.index < localLatestBlock.index) {
     // dont broadcast for not, the other peer with request it
     // broadcast({
@@ -64,7 +65,7 @@ const latestBlockHandler = remoteLatestBlock => {
     //   data: JSON.stringify(getAllBlocks())
     // });
   } else if (remoteLatestBlock.index > localLatestBlock.index) {
-    console.log('we are missing blocks');
+    winston.debug('we are missing blocks');
     // we are missing blocks, ask for the whole chain
     // could also check if we miss 1 or more
     Object.values(getAllWebSockets())[0].send(JSON.stringify({

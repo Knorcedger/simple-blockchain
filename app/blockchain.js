@@ -1,3 +1,4 @@
+import winston from 'winston';
 import Block from './block';
 import isValidNewBlock from './isValidNewBlock';
 import calculateHash from './calculateHash';
@@ -32,16 +33,16 @@ const addBlock = newBlock => {
     blockchain.push(newBlock);
   }
 
-  console.log('new block added');
+  winston.debug('new block added');
 };
 
 const replaceChain = newBlocks => {
   if (isValidChain(newBlocks, getGenesisBlock()) && newBlocks.length > getAllBlocks().length) {
-    console.log('Received blockchain is valid. Replacing current blockchain with received blockchain');
+    winston.debug('Received blockchain is valid. Replacing current blockchain with received blockchain');
     blockchain = newBlocks;
     // broadcast(responseLatestMsg());
   } else {
-    console.log('Received blockchain is invalid');
+    winston.error('Received blockchain is invalid');
   }
 };
 

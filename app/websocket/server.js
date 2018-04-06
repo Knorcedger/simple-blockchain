@@ -1,9 +1,10 @@
 import WebSocket from 'ws';
+import winston from 'winston';
 import {addWebSocket, getAllWebSockets} from './storage';
 import messageHandler from './messageHandler';
 
 const initWebSocketServer = server => {
-  console.log('Listening WebSocket');
+  winston.info('Listening WebSocket');
   const wsServer = new WebSocket.Server({server});
   wsServer.on('connection', ws => initConnection(ws));
 };
@@ -12,7 +13,7 @@ const connectToPeers = peer => {
   const ws = new WebSocket(peer);
   ws.on('open', () => initConnection(ws));
   ws.on('error', () => {
-    console.log('connection failed');
+    winston.error('connection failed');
   });
 };
 
@@ -22,7 +23,7 @@ const initConnection = ws => {
   ws.send(JSON.stringify({
     type: 'getLatestBlock'
   }));
-  console.log('ws connected');
+  winston.info('ws connected');
 };
 
 const broadcast = message => Object.values(getAllWebSockets()).forEach(webSocket => {

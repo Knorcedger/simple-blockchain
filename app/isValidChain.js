@@ -1,8 +1,9 @@
+import winston from 'winston';
 import isValidNewBlock from './isValidNewBlock';
 
 const isValidChain = (blockchain, genesisBlock) => {
   if (JSON.stringify(blockchain[0]) !== JSON.stringify(genesisBlock)) {
-    console.log('invalid genesis');
+    winston.error('invalid genesis');
     return false;
   }
 
