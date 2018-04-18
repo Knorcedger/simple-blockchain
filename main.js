@@ -7,7 +7,7 @@ import {broadcast, connectToPeers, initWebSocketServer} from './app/websocket/se
 import {getAllWebSockets} from './app/websocket/storage';
 
 // read env variables
-const port = process.env.port || 2000;
+const port = process.env.PORT || 2000;
 winston.level = process.env.logLevel ? 'debug' : winston.level;
 
 // initialize the express app
